@@ -5,6 +5,7 @@ local plr = game:GetService("Players").LocalPlayer
 local players = game:GetService("Players")
 local mouse = plr:GetMouse()
 local UIS = game:GetService("UserInputService")
+local LocalPlayer = game:GetService("Players").LocalPlayer
 
 local ESPSettings = {
     SkeletonESPEnabled = false,
