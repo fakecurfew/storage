@@ -1,0 +1,316 @@
+local workspace = game:GetService("Workspace")
+local camera = workspace.CurrentCamera
+local worldToViewportPoint = camera.worldToViewportPoint
+local plr = game:GetService("Players").LocalPlayer
+local players = game:GetService("Players")
+local mouse = plr:GetMouse()
+local UIS = game:GetService("UserInputService")
+
+local ESPSettings = {
+    SkeletonESPEnabled = false,
+    RainbowsESPEnabled = false,
+    TextOutlineEnabled = false,
+    TeamCheckEnabled = false,
+    MouseFrom = false,
+    CustomColor = true,
+    BottomFrom = true,
+    HeadFrom = false,
+    RoundedCorner = 12,
+    Length = 14,
+    ESPColor = Color3.fromRGB(255,255,255),
+    Thickness = 1,
+    TextSize = 15,
+    Transparency = 1,
+    HeadOff = Vector3.new(0,0.5,0),
+    LegOff = Vector3.new(0,3,0)
+}
+
+local function ApplyESP(Player)
+
+    local SkeletonTorso = Drawing.new("Line")
+    SkeletonTorso.Visible = false
+    SkeletonTorso.From = Vector2.new(0, 0)
+    SkeletonTorso.To = Vector2.new(200, 200)
+    SkeletonTorso.Color = Color3.fromRGB(255,255,255)
+    SkeletonTorso.Thickness = 1
+    SkeletonTorso.Transparency = ESPSettings.Transparency
+
+    local SkeletonHead = Drawing.new("Line")
+    SkeletonHead.Visible = false
+    SkeletonHead.From = Vector2.new(0, 0)
+    SkeletonHead.To = Vector2.new(200, 200)
+    SkeletonHead.Color = Color3.fromRGB(255,255,255)
+    SkeletonHead.Thickness = 1
+    SkeletonHead.Transparency = ESPSettings.Transparency
+
+    local SkeletonLeftLeg = Drawing.new("Line")
+    SkeletonLeftLeg.Visible = false
+    SkeletonLeftLeg.From = Vector2.new(0, 0)
+    SkeletonLeftLeg.To = Vector2.new(200, 200)
+    SkeletonLeftLeg.Color = Color3.fromRGB(255,255,255)
+    SkeletonLeftLeg.Thickness = 1
+    SkeletonLeftLeg.Transparency = ESPSettings.Transparency
+
+    local SkeletonRightLeg = Drawing.new("Line")
+    SkeletonRightLeg.Visible = false
+    SkeletonRightLeg.From = Vector2.new(0, 0)
+    SkeletonRightLeg.To = Vector2.new(200, 200)
+    SkeletonRightLeg.Color = Color3.fromRGB(255,255,255)
+    SkeletonRightLeg.Thickness = 1
+    SkeletonRightLeg.Transparency = ESPSettings.Transparency
+
+    local SkeletonLeftArm = Drawing.new("Line")
+    SkeletonLeftArm.Visible = false
+    SkeletonLeftArm.From = Vector2.new(0, 0)
+    SkeletonLeftArm.To = Vector2.new(200, 200)
+    SkeletonLeftArm.Color = Color3.fromRGB(255,255,255)
+    SkeletonLeftArm.Thickness = 1
+    SkeletonLeftArm.Transparency = ESPSettings.Transparency
+
+    local SkeletonRightArm = Drawing.new("Line")
+    SkeletonRightArm.Visible = false
+    SkeletonRightArm.From = Vector2.new(0, 0)
+    SkeletonRightArm.To = Vector2.new(200, 200)
+    SkeletonRightArm.Color = Color3.fromRGB(255,255,255)
+    SkeletonRightArm.Thickness = 1
+    SkeletonRightArm.Transparency = ESPSettings.Transparency
+
+    local line1 = Drawing.new("Line")
+    line1.Visible = false
+    line1.Color = Color3.fromRGB(255,255,255)
+    line1.Thickness = ESPSettings.Thickness
+    line1.Transparency = ESPSettings.Transparency
+
+    local line2 = Drawing.new("Line")
+    line2.Visible = false
+    line2.Color = Color3.fromRGB(255,255,255)
+    line2.Thickness = ESPSettings.Thickness
+    line2.Transparency = ESPSettings.Transparency
+
+    local line3 = Drawing.new("Line")
+    line3.Visible = false
+    line3.Color = Color3.fromRGB(255,255,255)
+    line3.Thickness = ESPSettings.Thickness
+    line3.Transparency = ESPSettings.Transparency
+
+    local line4 = Drawing.new("Line")
+    line4.Visible = false
+    line4.Color = Color3.fromRGB(255,255,255)
+    line4.Thickness = ESPSettings.Thickness
+    line4.Transparency = ESPSettings.Transparency
+
+    local line5 = Drawing.new("Line")
+    line5.Visible = false
+    line5.Color = Color3.fromRGB(255,255,255)
+    line5.Thickness = ESPSettings.Thickness
+    line5.Transparency = ESPSettings.Transparency
+
+    local line6 = Drawing.new("Line")
+    line6.Visible = false
+    line6.Color = Color3.fromRGB(255,255,255)
+    line6.Thickness = ESPSettings.Thickness
+    line6.Transparency = ESPSettings.Transparency
+
+    local line7 = Drawing.new("Line")
+    line7.Visible = false
+    line7.Color = Color3.fromRGB(255,255,255)
+    line7.Thickness = ESPSettings.Thickness
+    line7.Transparency = ESPSettings.Transparency
+
+    local line8 = Drawing.new("Line")
+    line8.Visible = false
+    line8.Color = Color3.fromRGB(255,255,255)
+    line8.Thickness = ESPSettings.Thickness
+    line8.Transparency = ESPSettings.Transparency
+
+    local line9 = Drawing.new("Line")
+    line9.Visible = false
+    line9.Color = Color3.fromRGB(255,255,255)
+    line9.Thickness = ESPSettings.Thickness
+    line9.Transparency = ESPSettings.Transparency
+
+    local line10 = Drawing.new("Line")
+    line10.Visible = false
+    line10.Color = Color3.fromRGB(255,255,255)
+    line10.Thickness = ESPSettings.Thickness
+    line10.Transparency = ESPSettings.Transparency
+
+    local line11 = Drawing.new("Line")
+    line11.Visible = false
+    line11.Color = Color3.fromRGB(255,255,255)
+    line11.Thickness = ESPSettings.Thickness
+    line11.Transparency = ESPSettings.Transparency
+
+    local line12 = Drawing.new("Line")
+    line12.Visible = false
+    line12.Color = Color3.fromRGB(255,255,255)
+    line12.Thickness = ESPSettings.Thickness
+    line12.Transparency = ESPSettings.Transparency
+
+    local Viewline = Drawing.new("Line") 
+    Viewline.Visible = false
+    Viewline.From = Vector2.new(0, 0)
+    Viewline.To = Vector2.new(0, 0)
+    Viewline.Color = Color3.fromRGB(255,255,255)
+    Viewline.Thickness = ESPSettings.Thickness
+    Viewline.Transparency = ESPSettings.Transparency
+    
+    game:GetService("RunService").RenderStepped:Connect(function()
+        if Player.Character ~= nil and Player.Character:FindFirstChild("Humanoid") ~= nil and Player.Character:FindFirstChild("HumanoidRootPart") ~= nil and Player ~= LocalPlayer and Player.Character.Humanoid.Health > 0 then
+            local Vector, onScreen = camera:worldToViewportPoint(Player.Character.HumanoidRootPart.Position)
+            local pos, vis = camera:worldToViewportPoint(Player.Character.HumanoidRootPart.Position)
+            local Distance = (camera.CFrame.p - Player.Character.HumanoidRootPart.Position).Magnitude
+            local RootPart = Player.Character.HumanoidRootPart
+            local Head = Player.Character.Head
+            local RootPosition, RootVis = worldToViewportPoint(camera, RootPart.Position)
+            local HeadPosition = worldToViewportPoint(camera, Head.Position + ESPSettings.HeadOff)
+            local LegPosition = worldToViewportPoint(camera, RootPart.Position - ESPSettings.LegOff)
+            local offsetCFrame = CFrame.new(0, 0, -ESPSettings.Length)
+            local headpos, OnScreen = camera:WorldToViewportPoint(Player.Character.Head.Position)
+            local localheadpos, headposonscreen = camera:WorldToViewportPoint(LocalPlayer.Character.Head.Position)
+            local dir = Player.Character.Head.CFrame:ToWorldSpace(offsetCFrame)
+            local dirpos, vis = camera:WorldToViewportPoint(Vector3.new(dir.X, dir.Y, dir.Z))
+
+            if onScreen then
+                if ESPSettings.SkeletonESPEnabled then
+                    local UpperTorso = camera:WorldToViewportPoint(Player.Character.UpperTorso.Position)
+                    local LowerTorso = camera:WorldToViewportPoint(Player.Character.LowerTorso.Position)
+    
+                    local LeftLeg = camera:WorldToViewportPoint(Player.Character.LeftFoot.Position)
+                    local RightLeg = camera:WorldToViewportPoint(Player.Character.RightFoot.Position)
+    
+                    local LeftArm = camera:WorldToViewportPoint(Player.Character.LeftHand.Position)
+                    local RightArm = camera:WorldToViewportPoint(Player.Character.RightHand.Position)
+    
+                    local Head = camera:WorldToViewportPoint(Player.Character.Head.Position)
+                    
+                    SkeletonTorso.Visible = true
+                    SkeletonHead.Visible = true
+                    SkeletonLeftArm.Visible = true
+                    SkeletonLeftLeg.Visible = true
+                    SkeletonRightArm.Visible = true
+                    SkeletonRightLeg.Visible = true
+
+                    SkeletonTorso.Transparency = ESPSettings.Transparency
+                    SkeletonHead.Transparency = ESPSettings.Transparency
+                    SkeletonLeftArm.Transparency = ESPSettings.Transparency
+                    SkeletonLeftLeg.Transparency = ESPSettings.Transparency
+                    SkeletonRightArm.Transparency = ESPSettings.Transparency
+                    SkeletonRightLeg.Transparency = ESPSettings.Transparency
+
+                    SkeletonTorso.Thickness = ESPSettings.Thickness
+                    SkeletonHead.Thickness = ESPSettings.Thickness
+                    SkeletonLeftArm.Thickness = ESPSettings.Thickness
+                    SkeletonLeftLeg.Thickness = ESPSettings.Thickness
+                    SkeletonRightArm.Thickness = ESPSettings.Thickness
+                    SkeletonRightLeg.Thickness = ESPSettings.Thickness
+                    
+                    SkeletonTorso.From = Vector2.new(UpperTorso.X, UpperTorso.Y)
+                    SkeletonTorso.To = Vector2.new(LowerTorso.X, LowerTorso.Y)
+    
+                    SkeletonHead.From = Vector2.new(UpperTorso.X, UpperTorso.Y)
+                    SkeletonHead.To = Vector2.new(Head.X, Head.Y)
+    
+                    SkeletonLeftLeg.From = Vector2.new(LeftLeg.X, LeftLeg.Y)
+                    SkeletonLeftLeg.To = Vector2.new(LowerTorso.X, LowerTorso.Y)
+    
+                    SkeletonRightLeg.From = Vector2.new(RightLeg.X, RightLeg.Y)
+                    SkeletonRightLeg.To = Vector2.new(LowerTorso.X, LowerTorso.Y)
+    
+                    SkeletonLeftArm.From = Vector2.new(LeftArm.X, LeftArm.Y)
+                    SkeletonLeftArm.To = Vector2.new(UpperTorso.X, UpperTorso.Y)
+    
+                    SkeletonRightArm.From = Vector2.new(RightArm.X, RightArm.Y)
+                    SkeletonRightArm.To = Vector2.new(UpperTorso.X, UpperTorso.Y)
+
+                    if ESPSettings.RainbowsESPEnabled then
+                        SkeletonTorso.Color = Color3.fromHSV(tick()%5/5,1,1)
+                        SkeletonHead.Color = Color3.fromHSV(tick()%5/5,1,1)
+                        SkeletonLeftArm.Color = Color3.fromHSV(tick()%5/5,1,1)
+                        SkeletonLeftLeg.Color = Color3.fromHSV(tick()%5/5,1,1)
+                        SkeletonRightArm.Color = Color3.fromHSV(tick()%5/5,1,1)
+                        SkeletonRightLeg.Color = Color3.fromHSV(tick()%5/5,1,1)
+                    elseif ESPSettings.CustomColor then
+                        SkeletonTorso.Color = ESPSettings.ESPColor
+                        SkeletonHead.Color = ESPSettings.ESPColor
+                        SkeletonLeftArm.Color = ESPSettings.ESPColor
+                        SkeletonLeftLeg.Color = ESPSettings.ESPColor
+                        SkeletonRightArm.Color = ESPSettings.ESPColor
+                        SkeletonRightLeg.Color = ESPSettings.ESPColor
+                    end
+
+                    if Player.TeamColor == LocalPlayer.TeamColor and ESPSettings.TeamCheckEnabled then
+                        SkeletonTorso.Visible = false
+                        SkeletonHead.Visible = false
+                        SkeletonLeftArm.Visible = false
+                        SkeletonLeftLeg.Visible = false
+                        SkeletonRightArm.Visible = false
+                        SkeletonRightLeg.Visible = false
+                    else
+                        SkeletonTorso.Visible = true
+                        SkeletonHead.Visible = true
+                        SkeletonLeftArm.Visible = true
+                        SkeletonLeftLeg.Visible = true
+                        SkeletonRightArm.Visible = true
+                        SkeletonRightLeg.Visible = true
+                    end
+                else
+                    SkeletonTorso.Visible = false
+                    SkeletonHead.Visible = false
+                    SkeletonLeftArm.Visible = false
+                    SkeletonLeftLeg.Visible = false
+                    SkeletonRightArm.Visible = false
+                    SkeletonRightLeg.Visible = false
+                end
+            else
+                SkeletonTorso.Visible = false
+                SkeletonHead.Visible = false
+                SkeletonLeftArm.Visible = false
+                SkeletonLeftLeg.Visible = false
+                SkeletonRightArm.Visible = false
+                SkeletonRightLeg.Visible = false
+                line1.Visible = false
+                line2.Visible = false
+                line3.Visible = false
+                line4.Visible = false
+                line5.Visible = false
+                line6.Visible = false
+                line7.Visible = false
+                line8.Visible = false
+                line9.Visible = false
+                line10.Visible = false
+                line11.Visible = false
+                line12.Visible = false
+                Viewline.Visible = false
+            end
+        else
+            SkeletonTorso.Visible = false
+            SkeletonHead.Visible = false
+            SkeletonLeftArm.Visible = false
+            SkeletonLeftLeg.Visible = false
+            SkeletonRightArm.Visible = false
+            SkeletonRightLeg.Visible = false
+            line1.Visible = false
+            line2.Visible = false
+            line3.Visible = false
+            line4.Visible = false
+            line5.Visible = false
+            line6.Visible = false
+            line7.Visible = false
+            line8.Visible = false
+            line9.Visible = false
+            line10.Visible = false
+            line11.Visible = false
+            line12.Visible = false
+            Viewline.Visible = false
+        end
+    end)
+end
+
+for i,v in pairs(game.Players:GetChildren()) do
+    ApplyESP(v)
+end
+
+game.Players.PlayerAdded:Connect(function(v)
+    ApplyESP(v)
+end)
