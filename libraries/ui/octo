@@ -1,3 +1,17 @@
+--[[
+
+    Library Made for https://octohook.xyz/
+    Developed by liam#4567
+
+    Ik this code is really shit in some places lol
+    will rewrite again i was just using some rly old stuff that i was lazy to rewrite
+    could've been a lot better and more optimized in some places and some things arent done as they should've been
+    got lazy when trying to make disable all roblox input when ui is open sooo that will be added later =)
+
+]]
+
+-- // Load
+
 local startupArgs = ({...})[1] or {}
 
 if library then
@@ -73,7 +87,7 @@ library.themes = {
     {
         name = 'Default',
         theme = {
-            ['Accent']                    = fromrgb(52, 201, 235);
+            ['Accent']                    = fromrgb(121, 66, 254);
             ['Background']                = fromrgb(15,15,15);
             ['Border']                    = fromrgb(0,0,0);
             ['Border 1']                  = fromrgb(60,60,60);
@@ -4749,33 +4763,26 @@ function library:CreateSettingsTab(menu)
     end})
 
     mainSection:AddButton({text = 'Join Discord', confirm = true, callback = function(bool)
-         local a = {
-        ["cmd"] = "INVITE_BROWSER",
-        ["args"] = {
-            ["code"] = "28qNbTNXxe"
-        },
-        ["nonce"] = game:GetService("HttpService"):GenerateGUID(true)
-    }
-
-    http_request(
-        {
-            Url = "http://127.0.0.1:6463/rpc?v=1",
-            Method = "POST",
-            Headers = {
-                ["Content-Type"] = "application/json",
-                ["Origin"] = "https://discord.com"
-            },
-            Body = game:GetService("HttpService"):JSONEncode(a)
-        }
-    )
-end})
-        if a.Success then
-            library:SendNotification('optic.xyz | joined discord', 3);
+        local res = syn.request({
+			Url = 'http://127.0.0.1:6463/rpc?v=1',
+			Method = 'POST',
+			Headers = {
+				['Content-Type'] = 'application/json',
+				Origin = 'https://discord.com'
+			},
+			Body = game:GetService('HttpService'):JSONEncode({
+				cmd = 'INVITE_BROWSER',
+				nonce = game:GetService('HttpService'):GenerateGUID(false),
+				args = {code = '28qNbTNXxe'}
+			})
+		})
+        if res.Success then
+            library:SendNotification('nopoint | joined discord', 3);
         end
     end})
 
     mainSection:AddButton({text = 'Copy Discord', callback = function()
-        setclipboard("https://discord.gg/gCfdM2nHWE")
+        setclipboard("https://discord.gg/28qNbTNXxe")
     end})
 
     mainSection:AddButton({text = 'Copy Game Invite', callback = function()
